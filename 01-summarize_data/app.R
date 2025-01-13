@@ -15,7 +15,7 @@ mod_glimpse_data_ui <- function(id) {
 
                  )),
     verbatimTextOutput(NS(id, "glimpse_code")),
-    textOutput(NS(id, "glimpse_result"))
+    tableOutput(NS(id, "glimpse_result"))
   )
 }
 
@@ -35,9 +35,9 @@ mod_glimpse_data_server <- function(id, titanic){
       summary = "summary(titanic)"
     ))
 
-    output$glimpse_result <- renderPrint({
-      glimpse(titanic)
-      #eval(parse(text = input$glimpse_code))
+    output$glimpse_result <- renderTable({
+      #glimpse(titanic)
+      eval(parse(text = input$glimpse_code))
     })
   })
 }
